@@ -1,0 +1,91 @@
+
+{% extends "base.html" %}
+{% block head %}
+    {{ super() }}
+    <style type="text/css">
+    #security1{
+        position: absolute;
+        top: 90px;
+        left: 50px;
+        width: 1960px;
+        height: 875px;
+    }
+    .center{
+    transform: scale(0.65,0.75);
+    }
+ </style>
+{% endblock %}
+
+{% block body %}
+    {{ super() }}
+
+    <form action="{{ url_for('parameter') }}" method="post" class="navbar-form">
+        <div class="form-inline">
+            <input type="text" class="form-control" name="taskNum" placeholder="taskNum" />
+            <input type="text" class="form-control" name="nodeNum" placeholder="nodeNum" />
+            <input type="text" class="form-control" name="iteratorNum" placeholder="iteratorNum" />
+            <input type="text" class="form-control" name="chromosomeNum" placeholder="chromosomeNum" />
+            <input type="text" class="form-control" name="cp" placeholder="cp" />
+            <input type="submit" name="start" value="开始模拟" class="btn btn-primary"/>
+        </div>
+    </form>
+    <h4>参数值参考：</h4>
+    <table class="table table-striped table-hover table-bordered">
+        <tr>
+            <th>参数名</th>
+            <th>含义</th>
+            <th>默认值</th>
+        </tr>
+        <tr>
+            <td>taskNum</td>
+            <td>任务数量</td>
+            <td>100</td>
+        </tr>
+        <tr>
+            <td>nodeNum</td>
+            <td>节点数量</td>
+            <td>20</td>
+        </tr>
+        <tr>
+            <td>iteratorNum</td>
+            <td>迭代次数</td>
+            <td>100</td>
+        </tr>
+        <tr>
+            <td>chromosomeNum</td>
+            <td>染色体数量</td>
+            <td>100</td>
+        </tr>
+        <tr>
+            <td>cp</td>
+            <td>染色体复制的比例</td>
+            <td>0.2</td>
+        </tr>
+    </table>
+
+
+    {% if parameter_empty == 1%}
+    {% else %}
+        <h4>用户指定参数：</h4>
+    <table class="table table-striped table-hover table-bordered">
+        <tr>
+            {% for i in userConfig %}
+            <th>{{ i }}</th>
+            {% endfor %}
+        </tr>
+        <tr>
+            {% for i in userConfig %}
+            <td>{{ userConfig[i] }}</td>
+            {% endfor %}
+        </tr>
+    </table>
+
+    <div >
+        <div class="center" >
+            <iframe id="security1" frameborder="0" src="/static/echarts/{{ filename }}"></iframe>
+        </div>
+    </div>
+    {% endif %}
+
+
+{% endblock %}

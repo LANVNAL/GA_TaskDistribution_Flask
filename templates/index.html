@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block body %}
+    {{ super() }}
+
+    <h2>基于遗传算法的分布式服务器负载均衡服务器分配策略模拟</h2>
+
+    <h4>使用随机模拟，进行了100次进化，每次进化都会生成100条染色体。图中的横坐标表示进化次数，而纵坐标表示任务执行时间。</h4>
+
+    <h4>下面是随机模拟使用的参数</h4>
+
+    <table class="table table-striped table-hover table-bordered">
+    <tr>
+        <th>参数名</th>
+        <th>含义</th>
+        <th>默认值</th>
+    </tr>
+    <tr>
+        <td>taskNum</td>
+        <td>任务数量</td>
+        <td>100</td>
+    </tr>
+    <tr>
+        <td>nodeNum</td>
+        <td>节点数量</td>
+        <td>20</td>
+    </tr>
+    <tr>
+        <td>iteratorNum</td>
+        <td>迭代次数</td>
+        <td>100</td>
+    </tr>
+    <tr>
+        <td>chromosomeNum</td>
+        <td>染色体数量</td>
+        <td>100</td>
+    </tr>
+    <tr>
+        <td>cp</td>
+        <td>染色体复制的比例</td>
+        <td>0.2</td>
+    </tr>
+</table>
+
+{% endblock %}
